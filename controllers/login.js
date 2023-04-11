@@ -42,12 +42,12 @@ const login = async (req, res) => {
     });
 
   
-     return  res.cookie(String(existingUser.id), token, {
+    res.cookie(String(existingUser.id), token, {
       path: "/",
       expires: new Date(Date.now() + 1000 * 30),
       httpOnly: true,
       sameSite: "none",
-      secure: false,
+      secure: true,
     });
 
  
