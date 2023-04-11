@@ -44,11 +44,6 @@ const forgotPassword = async (req, res) => {
       },
     });
 
-    res.status(200).json({
-      message:
-        "Password reset link has been sent to your email. Please check your inbox and follow the instructions to reset your password.",
-    });
-
     const resetLink = `${process.env.RESET_PASSWORD_URL}?token=${token}`;
     let currentDate = new Date();
     const message = {
@@ -81,6 +76,10 @@ const forgotPassword = async (req, res) => {
     };
 
     await transporter.sendMail(message);
+    res.status(200).json({
+      message:
+        "Password reset link has been sent to your email. Please check your inbox and follow the instructions to reset your password.",
+    });
   } catch (error) {
     return res.status(error.message);
   }

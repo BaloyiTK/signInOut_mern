@@ -18,7 +18,7 @@ const resetPassword = async (req, res) => {
     }
 
     let decodedToken;
-    const resetLink = "http://localhost:3000/forgot-password";
+    const resetLink = "http://localhost:3000/forgotpassword";
 
     try {
       decodedToken = jwt.verify(token, process.env.JWT_SECRET);
@@ -26,7 +26,7 @@ const resetPassword = async (req, res) => {
       if (error.name === "TokenExpiredError") {
         return res.status(401).json({
           message: "Your password reset link has expired.",
-          link: "http://localhost:3000/forgot-password"
+          link: "http://localhost:3000/forgotpassword"
         });
         
         

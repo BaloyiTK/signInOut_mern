@@ -33,8 +33,9 @@ const login = async (req, res) => {
 
     const token = jwt.sign({ id: existingUser.id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRATION,
-    });
+    })
 
+  
     res.cookie(String(existingUser.id), token, {
       path: "/",
       expires: new Date(Date.now() + 1000 * 30),
@@ -49,8 +50,8 @@ const login = async (req, res) => {
       token: token,
     });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message })
   }
 };
 
-export default login;
+export default login

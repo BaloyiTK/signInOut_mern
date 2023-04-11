@@ -6,7 +6,14 @@ import cors from "cors";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({credentials:true, origin:"http://localhost:3000"}));
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 app.use("/", userRouter)
 
